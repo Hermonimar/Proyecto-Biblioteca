@@ -1,45 +1,73 @@
 package main.java.co.edu.uniquindio.poo;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Collection;
+import java.util.LinkedList;
+
 public class DetallePrestamo {
 
     private int cantidad;
     private Prestamo prestamo;
     private Libro libro;
     private double subTotal;
-
+    private Collection<DetallePrestamo> detallePrestamos;
+    private Collection<Libro> libros;
+    
     public DetallePrestamo(int cantidad, Prestamo prestamo, Libro libro){
         this.cantidad=cantidad;
         this.prestamo=prestamo;
         this.libro=libro;
-        this.subTotal=calcularSubtotal();
+        this.subTotal=calcularSubtotal(null, null);
+        detallePrestamos = new LinkedList<>();
     }
+
 
     /*
-     * Metodo para mostrar los detalles del prestamo
-     * 
+     * Metodo para calcular SubTotal
      */
-public String datosPrestamo (String codigo){
-    for (Prestamo prestamo: prestamos){
 
-        if (prestamo.getCodigo().equals(codigo)){
-            return prestamo.toString();
-        }
-    }
-    return "El préstamo no se pudo encontrar";
-}
-
-
-/* Metodo que permite calcular el subtotal
- * return subtotal
- */
-
-    public double calcularSubtotal() {
+    public double calcularSubtotal(LocalDate fechaPrestamo, LocalDate fechaEntrega) {
         double subtotal = 0;
-        for (DetallePrestamo detallePrestamo : detallePrestamos) {
-            subtotal += detallePrestamo.getCantidad() * detallePrestamo.getValorPrestamo();
+    
+        if (detallePrestamos != null) {
+            for (DetallePrestamo detallePrestamo : detallePrestamos) {
+                if (detallePrestamo != null) {
+                    int cantidad = detallePrestamo.getCantidad();
+                    double valorUnidad = entregaPrestamo(libro.getCodigo(), fechaPrestamo, fechaEntrega); 
+                    subtotal += cantidad * valorUnidad;
+                }
+            }
         }
+        
         return subtotal;
     }
+    
+    /*
+    * Metodo que permite calcular el valor del prestamo de cada libro, estado y unidades disponibles
+    * return valorPrestamo
+    */
+  
+    public double entregaPrestamo(String codigo, LocalDate fechaPrestamo, LocalDate fechaEntrega) {
+        final double VALOR_DIA = 1000;
+        Period periodo = Period.between(fechaPrestamo, fechaEntrega);
+        int diasPrestamo = periodo.getDays();
+        double valorPrestamo = diasPrestamo * VALOR_DIA;
+    
+        for (Libro libro : libros) {
+            if (libro.getCodigo().equals(codigo)) {
+                if (libro.getUnidadesDisponibles() > 0) {
+                    libro.setUnidadesDisponibles(libro.getUnidadesDisponibles() - 1); 
+                    libro.setEstado(false); 
+                    break; 
+                }
+            }
+        }
+    
+        return valorPrestamo;
+    }
+                
+
 
      /*
      * Metodo para obtener cantidad
@@ -89,18 +117,12 @@ public String datosPrestamo (String codigo){
         this.libro = libro;
     }
 
-    /*
-     * Metodo para obtener subtotal
-     * return codigo
-     */
+    
+
     public double getSubTotal() {
         return subTotal;
     }
 
-    /*
-     * Metodo para modificar subtotal
-     * return codigo
-     */
     public void setSubTotal(double subTotal) {
         this.subTotal = subTotal;
     }
@@ -108,9 +130,13 @@ public String datosPrestamo (String codigo){
     @Override
     public String toString() {
         return "DetallePrestamo [cantidad=" + cantidad + ", prestamo=" + prestamo + ", libro=" + libro + ", subTotal="
-                + subTotal + "]";
+                + subTotal + ", detallePrestamos=" + detallePrestamos + ", libros=" + libros + "]";
     }
 
+    
+
+
+ 
     
     
 }

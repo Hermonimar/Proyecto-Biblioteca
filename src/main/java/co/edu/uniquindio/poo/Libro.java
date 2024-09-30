@@ -6,16 +6,18 @@ public class Libro {
 
     private String codigo, isbn, autor, titulo, editorial;
     private int unidadesDisponibles;
-    private LocalDate fechaPublicacion;
+    private String fechaPublicacion;
     private boolean estado;
+    
 
-    public Libro(String codigo, String isbn, String autor, String titulo, String editorial, int unidadesDisponibles, LocalDate fechaPublicacion){
+    public Libro(String codigo, String isbn, String autor, String titulo, String editorial, int unidadesDisponibles, String fechaPublicacion,boolean estado){
         this.codigo=codigo;
         this.isbn=isbn;
         this.autor=autor;
         this.editorial=editorial;
         this.titulo=titulo;
         this.unidadesDisponibles=unidadesDisponibles;
+        this.estado=estado;
         this.fechaPublicacion=fechaPublicacion;
     }
 

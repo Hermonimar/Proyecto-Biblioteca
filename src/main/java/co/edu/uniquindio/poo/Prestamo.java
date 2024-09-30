@@ -1,7 +1,6 @@
 package main.java.co.edu.uniquindio.poo;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -23,67 +22,6 @@ public class Prestamo {
         this.total = calcularTotal();
     }
 
-/*
- * Metodo para adicionar libro
- * return centinela
- */
-    public boolean adicionarLibro(String codigo) {
-        boolean centinela = false;
-        for (Libro libro : libros) {
-            if (libro.getCodigo().equals(codigo)) {
-            if (libro.getUnidadesDisponibles () > 0) {
-                libro.setUnidadesDisponibles(libro.getUnidadesDisponibles() - 1);
-                centinela = true;
-
-            }
-            break;
-        }
-    } 
-        return centinela;
-    }
-
-/*
- * Metodo que permite calcular el valor del prestamo de cada libro, estado y unidades disponibles
- * return valorPrestamo
- */
-    public double entregaPrestamo(String codigo, LocalDate fechaPrestamo,LocalDate fechaEntrega){
-
-        final double VALOR_DIA=1000;
-        Period periodo = Period.between(fechaPrestamo, fechaEntrega);
-        int diasPrestamo = periodo.getDays();
-        double valorPrestamo= diasPrestamo * VALOR_DIA;
-
-
-        for (Libro libro : libros) {
-            if (libro.getCodigo().equals(codigo)) {
-                if (libro.getUnidadesDisponibles() > 0) {
-                    libro.setUnidadesDisponibles(libro.getUnidadesDisponibles() + 1);
-                    libro.setEstado(false);
-                    break; 
-                }
-            }
-        }
-
-        return valorPrestamo;
-    }
-
-    /*
-     * Metodo para mostrar la cantidad de prestamos realizados por cada bibliotecario
-     * return contador
-     */
-    public int cantidadPrestamo (String bibliotecario){
-        int contador = 0;
-
-    for (Prestamo prestamo : prestamos) {
-        if (prestamo.getBibliotecario().equals(bibliotecario)) {
-            contador++;
-        }
-    }
-    System.out.println("Los préstamos realizados por el bibliotecario " + bibliotecario + " son: " + contador);
-
-    return contador; 
-
-}
 
     /*
      * Metodo para calcular total
