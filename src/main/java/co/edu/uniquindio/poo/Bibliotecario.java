@@ -17,23 +17,6 @@ public class Bibliotecario extends Persona {
         prestamos = new LinkedList<>();
     }
 
-    /*
-     * Metodo para calcular el pago de los bibliotecarios
-     * return total + bonificacion
-     */
-
-    public double pagoBibliotecarios(int antiguedad) {
-        double total= 0.0;
-
-        for (Prestamo prestamo: prestamos) {
-            total += prestamo.getTotal() * 0.20; 
-        }
-
-        double bonificacion = total * (0.02 * antiguedad); 
-
-        return total + bonificacion; 
-    }
-
      /*
      * Metodo para obtener salario
      * return codigo
@@ -86,6 +69,8 @@ public class Bibliotecario extends Persona {
     public String toString() {
         return "Bibliotecario [salario=" + salario + ", antiguedad=" + antiguedad + ", prestamos=" + prestamos + "]";
     }
+
+    
   
     
 }

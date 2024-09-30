@@ -14,19 +14,27 @@ public class Estudiante extends Persona {
         this.estado = estado;
         prestamos = new LinkedList<>();
     }
-
+    /*
+     * Metodo obtener el estado
+     */
     public boolean isEstado() {
         return estado;
     }
-
+    /*
+     * Metodo para modificar el estado
+     */
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-
+    /*
+     * Metodo para obtener los prestamos
+     */
     public Collection<Prestamo> getPrestamos() {
         return prestamos;
     }
-
+    /*
+     * Metodo para modificar los prestamo
+     */
     public void setPrestamos(Collection<Prestamo> prestamos) {
         this.prestamos = prestamos;
     }
@@ -35,6 +43,8 @@ public class Estudiante extends Persona {
     public String toString() {
         return "Estudiante [estado=" + estado + ", prestamos=" + prestamos + "]";
     }
+
+    
 
 }
     

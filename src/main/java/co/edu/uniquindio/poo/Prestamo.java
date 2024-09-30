@@ -1,19 +1,18 @@
 package main.java.co.edu.uniquindio.poo;
 
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.LinkedList;
 
 public class Prestamo {
 
     private String codigo;
-    private LocalDate fechaPrestamo, fechaEntrega;
+    private String fechaPrestamo, fechaEntrega;
     private double total;
     private Bibliotecario bibliotecario;
     private Estudiante estudiante;
     private Collection<DetallePrestamo> detallePrestamos;
 
-    public Prestamo(String codigo, LocalDate fechaPrestamo, LocalDate fechaEntrega, Bibliotecario bibliotecario,
+    public Prestamo(String codigo, String fechaPrestamo, String fechaEntrega, Bibliotecario bibliotecario,
             Estudiante estudiante) {
         this.codigo = codigo;
         this.fechaEntrega = fechaEntrega;
@@ -28,7 +27,7 @@ public class Prestamo {
      * return total
      */
     public double calcularTotal() {
-        double total = 0;
+        double total = 5000;
         for (DetallePrestamo detallePrestamo : detallePrestamos) {
             total += detallePrestamo.getSubTotal();
         }
@@ -56,7 +55,7 @@ public class Prestamo {
      * return codigo
      */
 
-    public LocalDate getFechaPrestamo() {
+    public String getFechaPrestamo() {
         return fechaPrestamo;
     }
 
@@ -64,7 +63,7 @@ public class Prestamo {
      * Metodo para modificar prestamo
      * return codigo
      */
-    public void setFechaPrestamo(LocalDate fechaPrestamo) {
+    public void setFechaPrestamo(String fechaPrestamo) {
         this.fechaPrestamo = fechaPrestamo;
     }
 
@@ -72,7 +71,7 @@ public class Prestamo {
      * Metodo para obtener fecha de entrega
      * return codigo
      */
-    public LocalDate getFechaEntrega() {
+    public String getFechaEntrega() {
         return fechaEntrega;
     }
 
@@ -81,7 +80,7 @@ public class Prestamo {
      * return codigo
      */
 
-    public void setFechaEntrega(LocalDate fechaEntrega) {
+    public void setFechaEntrega(String fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
 
@@ -150,11 +149,14 @@ public class Prestamo {
         this.detallePrestamos = detallePrestamos;
     }
 
+
     @Override
     public String toString() {
         return "Prestamo [codigo=" + codigo + ", fechaPrestamo=" + fechaPrestamo + ", fechaEntrega=" + fechaEntrega
                 + ", total=" + total + ", bibliotecario=" + bibliotecario + ", estudiante=" + estudiante
                 + ", detallePrestamos=" + detallePrestamos + "]";
     }
+
+    
 
 }
