@@ -1,6 +1,6 @@
 package main.java.co.edu.uniquindio.poo;
 
-import java.time.LocalDate;
+
 import java.util.Collection;
 import java.util.LinkedList;
 
