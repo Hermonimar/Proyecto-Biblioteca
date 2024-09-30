@@ -23,12 +23,13 @@ public class DetallePrestamo {
     }
 
 
+
     /*
      * Metodo para calcular SubTotal
      */
 
     public double calcularSubtotal(LocalDate fechaPrestamo, LocalDate fechaEntrega) {
-        double subtotal = 0;
+        double subtotal = 5000;
     
         if (detallePrestamos != null) {
             for (DetallePrestamo detallePrestamo : detallePrestamos) {
@@ -127,11 +128,15 @@ public class DetallePrestamo {
         this.subTotal = subTotal;
     }
 
+
+
     @Override
     public String toString() {
         return "DetallePrestamo [cantidad=" + cantidad + ", prestamo=" + prestamo + ", libro=" + libro + ", subTotal="
                 + subTotal + ", detallePrestamos=" + detallePrestamos + ", libros=" + libros + "]";
     }
+
+    
 
     
 
